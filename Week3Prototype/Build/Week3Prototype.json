@@ -1,0 +1,9 @@
+{
+"TOTAL_MEMORY": 268435456,
+"dataUrl": "Week3Prototype.data.unityweb",
+"asmCodeUrl": "Week3Prototype.asm.code.unityweb",
+"asmMemoryUrl": "Week3Prototype.asm.memory.unityweb",
+"asmFrameworkUrl": "Week3Prototype.asm.framework.unityweb",
+"splashScreenStyle": "Dark",
+"backgroundColor": "#231F20"
+}

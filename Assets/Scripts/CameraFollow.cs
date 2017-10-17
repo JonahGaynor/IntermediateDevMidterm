@@ -6,34 +6,39 @@ public class CameraFollow : MonoBehaviour {
 
 	public Transform lookAtTarget;
 	public Transform moveToTarget;
+	public Transform tr;
+	bool deadCameraMove = false;
+
+	void Start () {
+		tr = GetComponent<Transform> ();
+
+	}
 
 
-	// Update is called once per frame
 	void Update () {
+		deadCameraMove = GetComponentInParent<PlayerControlScript> ().deadOrNot;
 
-		//checking to see if variable is defined first.
 		if (lookAtTarget != null) {
-			transform.LookAt (lookAtTarget.position);
+			
+			transform.forward = Vector3.Slerp (transform.forward, lookAtTarget.position - transform.position, Time.deltaTime * 3f);
 		}
 
-		if (moveToTarget != null) {
-			//figure out what direction to move in
-			//calculate vector from this point (A) to moveToTarget (point B) = B-A
+		if (moveToTarget != null && deadCameraMove == true && transform.position.x > 5f) {
 			Vector3 moveDirection = moveToTarget.position - transform.position;
 
 
-			//if magnitude is greater than 1
 			if (moveDirection.magnitude > 1f) {
-				//normalize. all 3 are the same.
 				moveDirection = moveDirection / moveDirection.magnitude;
 				moveDirection = moveDirection.normalized;
 				moveDirection = Vector3.Normalize (moveDirection);
 			}
 
 			moveDirection.y = 0f;
-			//actually move the camera
 			transform.position += moveDirection * Time.deltaTime * 5f;
 		}
+
+
+
 
 	}
 }
