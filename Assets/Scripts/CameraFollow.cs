@@ -36,7 +36,12 @@ public class CameraFollow : MonoBehaviour {
 			moveDirection.y = 0f;
 			transform.position += moveDirection * Time.deltaTime * 5f;
 		}
-
+		if (gameObject.transform.position.z < -4.5) {
+			gameObject.transform.position = new Vector3 (transform.position.x, transform.position.y, -4.5f);
+		}
+		if (gameObject.transform.position.z > 4.5) {
+			gameObject.transform.position = new Vector3 (transform.position.x, transform.position.y, 4.5f);
+		}
 
 
 
